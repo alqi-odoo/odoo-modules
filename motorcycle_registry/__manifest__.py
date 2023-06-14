@@ -7,5 +7,8 @@ This module is used to keep track of the motorcycle registration and ownership o
     "author": "alqi-odoo",
     "website": "https://github.com/alqi-odoo/odoo-modules",
     "category": "Kawiil",
+    "demo": [
+        "demo/motorcycle_registry_demo.xml",
+    ],
     "application": True,
 }
