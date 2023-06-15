@@ -34,13 +34,12 @@ class MotorcycleRegistry(models.Model):
 
     @api.constrains("vin")
     def _check_vin(self):
-        visited = set()
         for record in self:
             if not re.fullmatch("^[A-Z]{4}[0-9]{2}[A-Z0-9]{2}[0-9]{6}$", record.vin):
                 raise ValidationError("VIN is invalid.")
-            if record.vin in visited:
+            query = [("vin", "=", record.vin)]
+            if self.env["motorcycle.registry"].search_count(query) > 1:
                 raise ValidationError("VIN must be unique.")
-            visited.add(record.vin)
 
     @api.constrains("license_plate")
     def _check_license_plate(self):
