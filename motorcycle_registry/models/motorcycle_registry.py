@@ -5,7 +5,7 @@ class MotorcycleRegistry(models.Model):
     _name = "motorcycle.registry"
     _description = "Motorcycle Registry"
 
-    registry_number = fields.Char(string="Registry Number", required=True)
+    registration_number = fields.Char(string="Registration Number", required=True)
     vin = fields.Char(string="VIN", required=True)
     first_name = fields.Char(string="First Name", required=True)
     last_name = fields.Char(string="Last Name", required=True)
@@ -13,4 +13,4 @@ class MotorcycleRegistry(models.Model):
     current_mileage = fields.Float(string="Current Mileage")
     license_plate = fields.Char(string="License Plate")
     certificate_title = fields.Image(string="Certificate of Title")
-    register_date = fields.Date(string="Register Date")
+    registration_date = fields.Date(string="Registration Date")
