@@ -2,22 +2,25 @@
 <odoo>
     <data noupdate="1">
         <record id="motorcycle_01" model="motorcycle.registry">
-            <field name="registration_number">RN01</field>
-            <field name="vin">VIN01</field>
+            <field name="registration_number">MRN0001</field>
+            <field name="vin">KAIN220M000234</field>
             <field name="first_name">John</field>
             <field name="last_name">Doe</field>
+            <field name="license_plate">BCE0K</field>
         </record>
         <record id="motorcycle_02" model="motorcycle.registry">
-            <field name="registration_number">RN02</field>
-            <field name="vin">VIN02</field>
+            <field name="registration_number">MRN0002</field>
+            <field name="vin">KAUK21XL847327</field>
             <field name="first_name">Jane</field>
             <field name="last_name">Doe</field>
+            <field name="license_plate">VUD450A</field>
         </record>
         <record id="motorcycle_03" model="motorcycle.registry">
-            <field name="registration_number">RN03</field>
-            <field name="vin">VIN03</field>
+            <field name="registration_number">MRN0003</field>
+            <field name="vin">WDBW156F715926</field>
             <field name="first_name">Marc</field>
             <field name="last_name">Demo</field>
+            <field name="license_plate">KVS491</field>
         </record>
     </data>
 </odoo>
