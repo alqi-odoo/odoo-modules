@@ -1,4 +1,6 @@
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.exceptions import ValidationError
+import re
 
 
 class MotorcycleRegistry(models.Model):
@@ -6,7 +8,12 @@ class MotorcycleRegistry(models.Model):
     _description = "Motorcycle Registry"
     _rec_name = "registration_number"
 
-    registration_number = fields.Char(string="Registration Number", required=True)
+    registration_number = fields.Char(
+        string="Registration Number",
+        required=True,
+        default="MRN0000",
+        copy=False,
+    )
     vin = fields.Char(string="VIN", required=True)
     first_name = fields.Char(string="First Name", required=True)
     last_name = fields.Char(string="Last Name", required=True)
@@ -15,3 +22,31 @@ class MotorcycleRegistry(models.Model):
     license_plate = fields.Char(string="License Plate")
     certificate_title = fields.Image(string="Certificate of Title")
     registration_date = fields.Date(string="Registration Date")
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("registration_number", "MRN0000") == "MRN0000":
+                vals["registration_number"] = self.env["ir.sequence"].next_by_code(
+                    "registration.number"
+                )
+        return super().create(vals_list)
+
+    @api.constrains("vin")
+    def _check_vin(self):
+        visited = set()
+        for record in self:
+            if not re.fullmatch("^[A-Z]{4}[0-9]{2}[A-Z0-9]{2}[0-9]{6}$", record.vin):
+                raise ValidationError("VIN is invalid.")
+            if record.vin in visited:
+                raise ValidationError("VIN must be unique.")
+            visited.add(record.vin)
+
+    @api.constrains("license_plate")
+    def _check_license_plate(self):
+        for record in self:
+            if record.license_plate and not re.fullmatch(
+                "^[A-Z]{1,4}[0-9]{1,3}[A-Z]{0,2}$",
+                record.license_plate,
+            ):
+                raise ValidationError("License plate is invalid.")
