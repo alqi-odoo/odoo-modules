@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
+    <!-- Form View -->
     <record id="motorcycle_registry_view_form" model="ir.ui.view">
         <field name="name">motorcycle.registry.view.form</field>
         <field name="model">motorcycle.registry</field>
@@ -8,7 +10,7 @@
                 <sheet>
                     <h1>
                         <field name="registration_number" />
-                        <field name="picture" />
+                        <field name="picture" class="oe_avatar" widget="image" />
                     </h1>
                     <group>
                         <group>
@@ -27,11 +29,41 @@
                     <notebook>
                         <page string="Related Documents">
                             <label for="certificate_title" />
-                            <field name="certificate_title" />
+                            <field name="certificate_title" class="oe_avatar" widget="image" />
                         </page>
                     </notebook>
                 </sheet>
             </form>
         </field>
     </record>
+
+    <!-- List View -->
+    <record id="motorcycle_registry_view_list" model="ir.ui.view">
+        <field name="name">motorcycle.registry.view.list</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <tree string="Motorcycle Registry List">
+                <field name="registration_number" />
+                <field name="vin" />
+                <field name="license_plate" />
+                <field name="first_name" />
+                <field name="last_name" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="motorcycle_registry_view_search" model="ir.ui.view">
+        <field name="name">motorcycle.registry.view.search</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <search string="Motorcycle Registry Search">
+                <field name="registration_number" />
+                <field name="vin" />
+                <field name="license_plate" />
+                <field name="last_name" />
+            </search>
+        </field>
+    </record>
+
 </odoo>
