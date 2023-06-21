@@ -15,8 +15,17 @@ class MotorcycleRegistry(models.Model):
         copy=False,
     )
     vin = fields.Char(string="VIN", required=True)
-    first_name = fields.Char(string="First Name", required=True)
-    last_name = fields.Char(string="Last Name", required=True)
+    make = fields.Char(string="Make", compute="_compute_make")
+    model = fields.Char(string="Model", compute="_compute_model")
+    year = fields.Char(string="Year", compute="_compute_year")
+    owner = fields.Many2one(
+        comodel_name="res.partner",
+        string="Owner",
+        required=True,
+        ondelete="cascade",
+    )
+    phone = fields.Char(related="owner.phone", string="Phone")
+    email = fields.Char(related="owner.email", string="Email")
     picture = fields.Image(string="Picture")
     current_mileage = fields.Float(string="Current Mileage")
     license_plate = fields.Char(string="License Plate")
@@ -49,3 +58,18 @@ class MotorcycleRegistry(models.Model):
                 record.license_plate,
             ):
                 raise ValidationError("License plate is invalid.")
+
+    @api.depends("vin")
+    def _compute_make(self):
+        for record in self:
+            record.make = record.vin[:2]
+
+    @api.depends("vin")
+    def _compute_model(self):
+        for record in self:
+            record.model = record.vin[2:4]
+
+    @api.depends("vin")
+    def _compute_year(self):
+        for record in self:
+            record.year = record.vin[4:6]
