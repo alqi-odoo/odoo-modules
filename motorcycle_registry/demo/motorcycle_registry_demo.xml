@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- <record id="motorcycle_01" model="motorcycle.registry">
+        <record id="motorcycle_01" model="motorcycle.registry">
             <field name="registration_number">MRN0001</field>
             <field name="vin">KAIN220M000234</field>
-            <field name="owner">John Doe</field>
+            <field name="owner">1</field>
             <field name="license_plate">BCE0K</field>
         </record>
         <record id="motorcycle_02" model="motorcycle.registry">
             <field name="registration_number">MRN0002</field>
             <field name="vin">KAUK21XL847327</field>
-            <field name="owner">Jane Doe</field>
+            <field name="owner">2</field>
             <field name="license_plate">VUD450A</field>
         </record>
         <record id="motorcycle_03" model="motorcycle.registry">
             <field name="registration_number">MRN0003</field>
             <field name="vin">WDBW156F715926</field>
-            <field name="owner">Marc Demo</field>
+            <field name="owner">3</field>
             <field name="license_plate">KVS491</field>
-        </record> -->
+        </record>
     </data>
 </odoo>
