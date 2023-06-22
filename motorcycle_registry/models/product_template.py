@@ -18,9 +18,9 @@ class ProductTemplate(models.Model):
     torque = fields.Float(string="Torque")
     battery_capacity = fields.Selection(
         selection=[
-            ("s", "Small"),
-            ("m", "Medium"),
-            ("l", "Large"),
+            ("xs", "Small"),
+            ("0m", "Medium"),
+            ("0l", "Large"),
             ("xl", "Extra Large"),
         ],
         string="Battery Capacity",
